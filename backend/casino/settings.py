@@ -58,15 +58,16 @@ WSGI_APPLICATION = 'casino.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+import os
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'casino_db',
-        'USER': 'casino_user',
-        'PASSWORD': 'mi_contra_segura',
-        'HOST': 'db',  # nombre del servicio en docker-compose.yml
-        'PORT': '3306',
+        'NAME': os.environ.get('MYSQL_DATABASE', 'casino_db'),
+        'USER': os.environ.get('MYSQL_USER', 'casino_user'),
+        'PASSWORD': os.environ.get('MYSQL_PASSWORD', 'mi_contra_segura'),
+        'HOST': os.environ.get('MYSQL_HOST', 'db'),
+        'PORT': os.environ.get('MYSQL_PORT', '3307'),
     }
 }
 
